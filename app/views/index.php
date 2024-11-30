@@ -13,37 +13,26 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true)
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil - MDM-Project</title>
-    <link rel="stylesheet" href="public/css/styles.css">
-    <script>
-        // Script pour l'horloge dynamique
-        function updateClock() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString();
-            const dateString = now.toLocaleDateString();
-            document.getElementById('clock').textContent = `${dateString} ${timeString}`;
-        }
-        setInterval(updateClock, 1000);
-        window.onload = updateClock;
-    </script>
+    <title>MDM-Project - Accueil</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    	<!-- Inclure la navbar -->
-	<?php include '../includes/navbar.php'; ?>
 
-	<!-- Inclure la sidebar -->
-    <?php include '../includes/sidebar.php'; ?>
+    <!-- Inclure la navbar -->
+    <?php include 'includes/navbar.php'; ?>
 
-	<!-- Contenu principal -->
-    <?php include __DIR__ . '/includes/navbar.php'; ?>
+    <!-- Inclure le menu latéral -->
+    <?php include 'includes/sidebar.php'; ?>
 
-    <div class="content">
+    <!-- Contenu principal -->
+    <div class="main-content">
         <h1>Bienvenue sur MDM-Project</h1>
-        <p>Veuillez choisir une section dans le menu ci-dessus.</p>
+        <p>Choisissez une section dans le menu à gauche.</p>
     </div>
+
 </body>
 </html>
