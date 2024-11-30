@@ -1,8 +1,6 @@
 <?php
 session_start();
-
-// Inclure le fichier de connexion à la base de données
-require_once '../includes/database.php';  // Mise à jour du chemin
+require_once '../includes/database.php';
 
 if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true) {
     header("Location: index.php");
@@ -14,7 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
 
     try {
-        // Utilisation de la connexion PDO déjà établie dans database.php
         $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
         $stmt->execute(['username' => $username]);
 
@@ -23,13 +20,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user_logged_in'] = true;
             $_SESSION['username'] = $username;
-            header("Location: index.php");
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['role'] = $user['role'];
+
+            // Redirection en fonction du rôle
+            if ($user['role'] == 'super_admin' || $user['role'] == 'admin') {
+                header("Location: index.php");
+            } else {
+                header("Location: index.php");
+            }
             exit();
         } else {
             $error_message = "Identifiants incorrects.";
         }
     } catch (PDOException $e) {
-        $error_message = "Erreur de connexion à la base de données : " . $e->getMessage();
+        $error_message = "Erreur de connexion : " . $e->getMessage();
     }
 }
 ?>
@@ -38,32 +43,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MDM-System - Connexion</title>
-
-    <!-- Inclusion du fichier CSS -->
-    <link rel="stylesheet" href="../css/style.css">
+    <title>Connexion - MDM-Project</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <div class="login-container">
-        <h1>Page de Connexion</h1>
 
-        <?php
-        if (isset($error_message)) {
-            echo "<p class='error'>$error_message</p>";
-        }
-        ?>
+    <div class="login-page">
+        <div class="login-container">
+            <h2>Connexion à MDM-Project</h2>
 
-        <form action="login.php" method="POST">
-            <label for="username">Nom d'utilisateur :</label>
-            <input type="text" name="username" id="username" required>
-            <br><br>
-            <label for="password">Mot de passe :</label>
-            <input type="password" name="password" id="password" required>
-            <br><br>
-            <input type="submit" value="Se connecter">
-        </form>
+            <?php if (!empty($error_message)): ?>
+                <div class="error-message"><?php echo $error_message; ?></div>
+            <?php endif; ?>
+
+            <form action="login.php" method="post">
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <button type="submit">Se connecter</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>
+
