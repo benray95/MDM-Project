@@ -32,7 +32,13 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true)
     </script>
 </head>
 <body>
-    <!-- Navigation -->
+    	<!-- Inclure la navbar -->
+	<?php include '../includes/navbar.php'; ?>
+
+	<!-- Inclure la sidebar -->
+    <?php include '../includes/sidebar.php'; ?>
+
+	<!-- Contenu principal -->
     <?php include __DIR__ . '/includes/navbar.php'; ?>
 
     <div class="content">
