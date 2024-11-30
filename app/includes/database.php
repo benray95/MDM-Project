@@ -5,7 +5,7 @@
 $host = 'localhost'; // Hôte de la base de données
 $dbname = 'mdm_database'; // Nom de la base de données
 $username = 'root'; // Nom d'utilisateur (à modifier selon votre configuration)
-$password = '&é"azeQSD'; // Mot de passe (à modifier selon votre configuration)
+$password = 'mdm'; // Mot de passe (à modifier selon votre configuration)
 
 // Tentative de connexion à la base de données
 try {
@@ -17,3 +17,4 @@ try {
     die("Erreur de connexion à la base de données : " . $e->getMessage());
 }
 ?>
+
