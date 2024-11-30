@@ -1,26 +1,164 @@
-/* CSS pour la page de login */
-
+/* Style général */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Style de la navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: orange;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 1000;
+    border-top: 2px solid orange;
+    border-bottom: 2px solid orange;
+}
+
+.navbar-left {
+    width: 60%;
+    font-size: 22px;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.navbar-center {
+    width: 5%;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.navbar-right {
+    width: 10%;
+    align-items: center;
+    text-align: right;
+}
+
+#clock {
+    width: 25%;
+    font-size: 1rem;
+    padding-right: 20px;
+}
+
+.user-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.user-menu span {
+    cursor: pointer;
+}
+
+.user-menu .dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #444;
+    border-radius: 5px;
+    min-width: 150px;
+    z-index: 1000;
+}
+
+.user-menu:hover .dropdown {
+    display: block;
+}
+
+.user-menu .dropdown a {
+    display: block;
+    padding: 10px;
+    color: white;
+    background-color: #333;
+}
+
+.user-menu .dropdown a:hover {
+    background-color: #555;
+}
+
+/* Menu latéral */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    padding-top: 10%;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px 15px;
+}
+
+.sidebar ul li a {
+    color: white;
+    font-size: 1.1rem;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: #555;
+}
+
+/* Contenu principal */
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    margin-top: 70px;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.error-message {
+    color: red;
+    font-size: 1.1rem;
+}
+
+/* Page de login */
+.login-page {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #f4f4f4;
 }
 
 .login-container {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     width: 300px;
 }
 
-h2 {
+.login-container h2 {
     text-align: center;
+    font-size: 1.5rem;
     margin-bottom: 20px;
 }
 
@@ -28,38 +166,131 @@ h2 {
     margin-bottom: 15px;
 }
 
-label {
-    font-size: 14px;
+.form-group label {
+    font-size: 1rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* Formulaire d'ajout d'utilisateur */
+.user-form {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.user-form h2 {
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
     display: block;
     margin-bottom: 5px;
 }
 
-input[type="text"],
-input[type="password"] {
+.form-group input {
     width: 100%;
     padding: 8px;
-    font-size: 14px;
-    border: 1px solid #ccc;
     border-radius: 4px;
+    border: 1px solid #ddd;
 }
 
 button {
-    background-color: #4CAF50;
+    padding: 10px 15px;
     color: white;
     border: none;
-    padding: 10px 15px;
-    font-size: 14px;
-    width: 100%;
+    background-color: #333;
     cursor: pointer;
     border-radius: 4px;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #555;
 }
 
-.error {
-    color: red;
-    font-size: 14px;
-    margin-bottom: 15px;
+/* Liste des utilisateurs */
+.user-list table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
+
+.user-list table th, .user-list table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.user-list table th {
+    background-color: #f2f2f2;
+}
+
+/* Boutons d'action dans la table */
+.action-buttons form {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.btn-delete, .btn-update {
+    padding: 5px 10px;
+    color: white;
+    border: none;
+    background-color: #e74c3c;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-update {
+    background-color: #3498db;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}
+
+.btn-update:hover {
+    background-color: #2980b9;
+}
+
+/* Messages de succès ou d'erreur */
+.message {
+    background-color: #f1c40f;
+    padding: 15px;
+    margin: 10px 0;
+    color: #fff;
+    border-radius: 4px;
+    text-align: center;
+}
+
+
+
+
+
